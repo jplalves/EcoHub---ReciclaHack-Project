@@ -11,6 +11,7 @@ flask-jwt-extended = "*"
 flask-sqlalchemy = "*"
 flask-migrate = "*"
 flask-cors = "*"
+gunicorn = "*"
 
 [dev-packages]
 
