@@ -1,10 +1,13 @@
-/*.carousel-item {
-  min-height: 00px;
+.card-registration .select-input.form-control[readonly]:not([disabled]) {
+  font-size: 1rem;
+  line-height: 2.15;
+  padding-left: .75em;
+  padding-right: .75em;
+}
+.card-registration .select-arrow {
+  top: 13px;
 }
 
-.carousel-item img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    min-height: 300px;
-}*/
+.card-body {
+  font-family: 'Cairo', sans-serif;
+}
