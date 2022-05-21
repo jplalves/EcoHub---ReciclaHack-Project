@@ -1,10 +1,16 @@
 from uuid import uuid4
 from database import db
+from sqlalchemy.orm import backref
 
 
 class Garbage(db.Model):
     __tablename__ = 'garbage'
 
+    # Foreign Key
+    type_id = db.Column(db.Integer, db.ForeignKey('type_of_garbage.id'))
+    type_of_garbage = db.relationship("TypeOfGarbage", backref=backref("type_of_garbage", uselist=False))
+
+    # Columns
     id = db.Column(db.String(36), default=lambda: str(uuid4()), primary_key=True)
     name = db.Column(db.String(128), nullable=False)
     description = db.Column(db.String(128), nullable=False)
