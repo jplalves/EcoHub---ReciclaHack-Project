@@ -26,6 +26,6 @@ Execute o arquivo app/main.py
 #### Para atualizar banco de dados depois de alterações nos modelos:
 Rode os seguintes comandos:
 
-`flask db migrate`
+1º `flask db migrate`
 
-`flask db upgrade`
+2º `flask db upgrade`
