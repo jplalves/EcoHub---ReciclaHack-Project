@@ -6,6 +6,7 @@ from werkzeug.security import check_password_hash
 class User(db.Model):
     __tablename__ = 'users'
 
+    # Columns
     id = db.Column(db.String(36), default=lambda: str(uuid4()), primary_key=True)
     email = db.Column(db.String(84), nullable=False, unique=True)
     password = db.Column(db.String(128), nullable=True)
@@ -13,7 +14,7 @@ class User(db.Model):
     cep = db.Column(db.String(20), nullable=True)
     address = db.Column(db.String(128), nullable=True)
     complement = db.Column(db.String(128), nullable=True)
-    cpf = db.Column(db.String(20), nullable=True)
+    cpf_or_cnpj = db.Column(db.String(20), nullable=True)
     birth_date = db.Column(db.Date(), nullable=True)
     active = db.Column(db.Boolean(), default=True)
 
