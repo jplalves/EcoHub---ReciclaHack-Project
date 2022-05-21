@@ -2,8 +2,9 @@ from database import db, migrate
 from flask import Flask
 from flask_cors import CORS
 from flask_jwt_extended import JWTManager
-from app.views.users_views import app_users
 from app.views.templates_views import app_views
+from app.models.users import User
+from app.models.garbage import Garbage
 
 
 def create_app():
@@ -18,5 +19,4 @@ def create_app():
 
 
 def _register_blueprint(app: Flask):
-    app.register_blueprint(app_users)
     app.register_blueprint(app_views)
