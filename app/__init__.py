@@ -5,6 +5,8 @@ from flask_jwt_extended import JWTManager
 from app.views.templates_views import app_views
 from app.models.users import User
 from app.models.garbage import Garbage
+from app.models.type_of_garbage import TypeOfGarbage
+from app.models.cooperative import Cooperative
 
 
 def create_app():
