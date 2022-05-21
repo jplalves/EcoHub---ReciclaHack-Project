@@ -21,5 +21,7 @@ class Garbage(db.Model):
                 'id': self.id,
                 'email': self.name,
                 'description': self.description,
+                'type_of_garbage': self.type_of_garbage.type,
+                'type_id': self.type_id,
                 'active': self.active
                 }

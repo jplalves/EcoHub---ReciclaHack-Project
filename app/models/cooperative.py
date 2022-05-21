@@ -23,8 +23,8 @@ class Cooperative(User):
                 'complement': self.complement,
                 'cpf': self.cpf,
                 'birth_date': self.birth_date,
-                'type_of_garbage_accepted': self.type_of_garbage_accepted,
-                'preferencial_garbage': self.preferencial_garbage,
+                'type_of_garbage_accepted': [garbage.serialize() for garbage in self.type_of_garbage_accepted],
+                'preferencial_garbage': [garbage.serialize() for garbage in self.preferencial_garbage],
                 'cep': self.cep,
                 'active': self.active,
                 }
