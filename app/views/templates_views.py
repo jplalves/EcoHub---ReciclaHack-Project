@@ -1,6 +1,8 @@
+import json
+
 from app.actions.cooperative_actions import login_coop
 from app.actions.users_actions import create_user, login_user
-from flask import Blueprint, render_template, request, redirect
+from flask import Blueprint, render_template, request, redirect, Response
 
 app_views = Blueprint('views', __name__)
 
@@ -8,14 +10,13 @@ app_views = Blueprint('views', __name__)
 # Templates
 @app_views.route('/', methods=['GET'])
 def home_view():
-    # _json = request.get_json()
     return render_template('index.html')
 
 
 @app_views.route('/how_to_recycle', methods=['GET'])
 def how_to_recycle_view():
-    # _json = request.get_json()
-    return render_template('index.html')
+    _json = request.get_json()
+    return render_template('index.html', context=_json)
 
 
 @app_views.route('/where_recycle', methods=['GET'])
@@ -30,9 +31,15 @@ def login_view():
         return render_template('login.html', status=True)
 
     credentials = request.values
-    if login_user(credentials.get('email'), credentials.get("password")):
-        return redirect('/')
+    token = login_user(credentials.get('email'), credentials.get("password"))
+    if token:
+        return render_template('index.html', token=token)
     return render_template('login.html', status=False)
+
+
+@app_views.route('/logout', methods=['GET'])
+def logout_view():
+    return redirect('/')
 
 
 @app_views.route('/register', methods=['POST', 'GET'])
@@ -41,6 +48,7 @@ def register_view():
         return render_template('register.html', status=True)
 
     credentials = request.values
-    if create_user(credentials):
-        return redirect('/login')
+    user = create_user(credentials)
+    if user:
+        return render_template('index.html', user=user.serialize())
     return render_template('register.html', status=False)
