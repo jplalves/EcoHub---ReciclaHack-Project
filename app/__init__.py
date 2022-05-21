@@ -3,12 +3,10 @@ from flask import Flask
 from flask_cors import CORS
 from flask_jwt_extended import JWTManager
 from app.views.templates_views import app_views
-from app.models.users import User
-from app.models.garbage import Garbage
-from app.models.type_of_garbage import TypeOfGarbage
-from app.models.cooperative import Cooperative
-from app.models.post import Post
-from app.models.comments import Comments
+from app.models.entities.users import User
+from app.models.entities.comments import Comments
+from app.models.entities.garbage import Garbage
+from app.models.entities.cooperative import Cooperative
 
 
 def create_app():
