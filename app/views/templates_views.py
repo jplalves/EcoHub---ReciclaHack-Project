@@ -1,6 +1,5 @@
-import json
+from app.actions.users_actions import login
 from flask import Blueprint, render_template, request, redirect
-from app.actions.users_actions import get_user_by_id, get_users, update_user, create_user, login, deleted_user
 
 
 app_views = Blueprint('views', __name__)
