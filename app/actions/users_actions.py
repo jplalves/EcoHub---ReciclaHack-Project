@@ -1,6 +1,6 @@
 from typing import Dict, List
-from datetime import timedelta
-from app.models.users import User
+from datetime import timedelta, datetime
+from app.models.entities.users import User
 from flask_jwt_extended import create_access_token
 from database.repository import save, delete, commit
 from werkzeug.security import generate_password_hash
@@ -30,7 +30,7 @@ def create_user(data: Dict) -> User or None:
             address=data.get('address'),
             complement=data.get('complement'),
             cpf_or_cnpj=data.get('cpf'),
-            birth_date=data.get('birth_date'),
+            birth_date=datetime.strptime(data.get('birth_date'), "%Y-%m-%d"),
             active=data.get('active')
         ))
     except (AttributeError, KeyError, TypeError):
