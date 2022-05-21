@@ -1,6 +1,6 @@
-from app.actions.users_actions import login
+from app.actions.cooperative_actions import login_coop
+from app.actions.users_actions import create_user, login_user
 from flask import Blueprint, render_template, request, redirect
-
 
 app_views = Blueprint('views', __name__)
 
@@ -24,13 +24,23 @@ def where_recycle_view():
     return render_template('index.html')
 
 
-@app_views.route('/login_or_register', methods=['POST', 'GET'])
+@app_views.route('/login', methods=['POST', 'GET'])
 def login_view():
     if request.method == 'GET':
         return render_template('login.html', status=True)
 
     credentials = request.values
-    if login(credentials.get('email'), credentials.get("password")):
+    if login_user(credentials.get('email'), credentials.get("password")):
         return redirect('/')
     return render_template('login.html', status=False)
 
+
+@app_views.route('/register', methods=['POST', 'GET'])
+def register_view():
+    if request.method == 'GET':
+        return render_template('register.html', status=True)
+
+    credentials = request.values
+    if create_user(credentials):
+        return redirect('/login')
+    return render_template('register.html', status=False)

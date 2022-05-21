@@ -27,7 +27,7 @@ def update_garbage(garbage_id: str, data: Dict) -> Garbage:
     return garbage
 
 
-def deleted_garbage(garbage_id: str) -> Garbage:
+def delete_garbage(garbage_id: str) -> Garbage:
     garbage: Garbage = get_garbage_by_id(garbage_id)
     delete(garbage)
     commit()
