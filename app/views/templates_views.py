@@ -12,7 +12,13 @@ def home_view():
     return render_template('index.html')
 
 
-@app_views.route('/login', methods=['POST', 'GET'])
+@app_views.route('/how_to_recycle', methods=['GET'])
+def home_view():
+    _json = request.get_json()
+    return render_template('index.html')
+
+
+@app_views.route('/where_recycle', methods=['POST', 'GET'])
 def login_view():
     if request.method == 'GET':
         return render_template('login.html', status=True)
