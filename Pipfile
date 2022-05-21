@@ -12,6 +12,8 @@ flask-sqlalchemy = "*"
 flask-migrate = "*"
 flask-cors = "*"
 gunicorn = "*"
+flask-admin = "*"
+wtforms-appengine = "*"
 
 [dev-packages]
 

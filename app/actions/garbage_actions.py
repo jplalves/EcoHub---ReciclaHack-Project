@@ -9,7 +9,7 @@ def create_garbage(data: Dict) -> Garbage or None:
             name=data.get('name'),
             description=data.get('description'),
             active=data.get('active'),
-            type_id=data.get('type_id')
+            type_of_garbage=data.get('type')
         ))
     except (AttributeError, KeyError, TypeError):
         return
@@ -20,6 +20,7 @@ def update_garbage(garbage_id: str, data: Dict) -> Garbage:
     list_keys = list(data.keys())
 
     garbage.name = data.get('name') if data.get('name') else garbage.name
+    garbage.description = data.get('description') if data.get('description') else garbage.description
     garbage.active = data.get('active') if list_keys.count('active') else garbage.active
     garbage.description = data.get('description') if data.get('description') else garbage.description
 

@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "ff864832d2faf6ee8de5885a9228a99afe713e2933554b14ee9530bda041bb24"
+            "sha256": "d79cf8f690eaee599b1f7e1298748d9b907f88ea60a5dd68401e94743ddb59aa"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -47,6 +47,13 @@
             ],
             "index": "pypi",
             "version": "==2.1.2"
+        },
+        "flask-admin": {
+            "hashes": [
+                "sha256:424ffc79b7b0dfff051555686ea12e86e48dffacac14beaa319fb4502ac40988"
+            ],
+            "index": "pypi",
+            "version": "==1.6.0"
         },
         "flask-cors": {
             "hashes": [
@@ -151,11 +158,11 @@
         },
         "importlib-metadata": {
             "hashes": [
-                "sha256:1208431ca90a8cca1a6b8af391bb53c1a2db74e5d1cef6ddced95d4b2062edc6",
-                "sha256:ea4c597ebf37142f827b8f39299579e31685c31d3a438b59f469406afd0f2539"
+                "sha256:5d26852efe48c0a32b0509ffbc583fda1a2266545a78d104a6f4aff3db17d700",
+                "sha256:c58c8eb8a762858f49e18436ff552e83914778e50e9d2f1660535ffb364552ec"
             ],
             "markers": "python_version < '3.10'",
-            "version": "==4.11.3"
+            "version": "==4.11.4"
         },
         "install": {
             "hashes": [
@@ -308,6 +315,23 @@
             ],
             "markers": "python_version >= '3.7'",
             "version": "==2.1.2"
+        },
+        "wtforms": {
+            "hashes": [
+                "sha256:6b351bbb12dd58af57ffef05bc78425d08d1914e0fd68ee14143b7ade023c5bc",
+                "sha256:837f2f0e0ca79481b92884962b914eba4e72b7a2daaf1f939c890ed0124b834b"
+            ],
+            "markers": "python_version >= '3.7'",
+            "version": "==3.0.1"
+        },
+        "wtforms-appengine": {
+            "hashes": [
+                "sha256:2f38d2c73e52ae7d8ac75c32e83bfe76b9789f5d8775e7079173709b31e05ac2",
+                "sha256:56824d785458a8da68fab3d3ba3561831115965197a85a624e4bb9534c69fe19",
+                "sha256:a4e000db66185bcedb007ecd24fc1b311bb62139d455b1088382a8fcce329973"
+            ],
+            "index": "pypi",
+            "version": "==0.1"
         },
         "zipp": {
             "hashes": [
