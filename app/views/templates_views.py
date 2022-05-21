@@ -61,17 +61,3 @@ def tips_view():
         return render_template('tips.html', list_garbage=list_garbage)
 
     return render_template('tips.html')
-
-"""
-      {% for gb in garbage %}
-        <div class="card">
-          <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/041.webp" class="card-img-top" alt="Hollywood Sign on The Hill"/>
-          <div class="card-body">
-            <h5 class="card-title">{{ gb.name }}</h5>
-            <p class="card-text">
-              {{ gb.description }}
-            </p>
-          </div>
-        </div>
-     {% endfor %}
-"""
