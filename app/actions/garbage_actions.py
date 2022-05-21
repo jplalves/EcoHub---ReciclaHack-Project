@@ -8,7 +8,8 @@ def create_garbage(data: Dict) -> Garbage or None:
         return save(Garbage(
             name=data.get('name'),
             description=data.get('description'),
-            active=data.get('active')
+            active=data.get('active'),
+            type_id=data.get('type_id')
         ))
     except (AttributeError, KeyError, TypeError):
         return

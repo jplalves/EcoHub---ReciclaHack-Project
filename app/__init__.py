@@ -7,6 +7,8 @@ from app.models.users import User
 from app.models.garbage import Garbage
 from app.models.type_of_garbage import TypeOfGarbage
 from app.models.cooperative import Cooperative
+from app.models.post import Post
+from app.models.comments import Comments
 
 
 def create_app():
