@@ -10,7 +10,7 @@ from app.models.cooperative import Cooperative
 
 
 def create_app():
-    app = Flask(__name__)
+    app = Flask(__name__, template_folder="./templates", static_folder="./templates")
     CORS(app)
     app.config.from_object('settings')
     JWTManager(app)

@@ -9,11 +9,11 @@ Para instalar as dependencias crie uma Pipenv:
 
 #### obs: E necessario ter "pipenv" instalado no seu python para seguir. 
 
-![img.png](images/example_pipenv_add.png)
+![img.png](app/templates/images/example_pipenv_add.png)
 
 ---
 
-![img.png](images/example_gnrt_pipenv.png)
+![img.png](app/templates/images/example_gnrt_pipenv.png)
 
 
 Após a instalação execute o comando:

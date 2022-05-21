@@ -10,14 +10,14 @@
   <!-- CSS only -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
   <title>EcoHub</title>
 </head>
 <body>
   <nav class="navbar navbar-expand-lg px-5" style="background: linear-gradient(90deg, rgba(187,241,153,1) 0%, rgba(154,228,105,1) 35%, rgba(124,235,50,1) 100%);">
     <div class="container-fluid">
       <a class="navbar-brand" href="#" style="font-size: 38px; font-family: 'Cairo', sans-serif; font-weight: 900">
-        <img src="images/ecohub-nav-logo.png" alt="nav-logo" width="55" height="55" class="d-inline-block align-text-center" style="position: relative; bottom: 4px">
+        <img src="{{ url_for('static', filename='images/ecohub-nav-logo.png') }}" alt="nav-logo" width="55" height="55" class="d-inline-block align-text-center" style="position: relative; bottom: 4px">
         EcoHub
       </a>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -56,10 +56,10 @@
       </div>
       <div class="carousel-inner">
         <div class="carousel-item active">
-          <img src="images/carousel-first-image.png" class="d-block w-100" alt="...">
+          <img src="{{ url_for('static', filename='images/carousel-first-image.png') }}" class="d-block w-100" alt="...">
         </div>
         <div class="carousel-item">
-          <img src="images/carousel-explain.png" class="d-block w-100" alt="...">
+          <img src="{{ url_for('static', filename='images/carousel-explain.png') }}" class="d-block w-100" alt="...">
         </div>
         <div class="carousel-item">
           <img src="..." class="d-block w-100" alt="...">
