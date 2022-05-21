@@ -19,7 +19,7 @@ def how_to_recycle_view():
 
 
 @app_views.route('/where_recycle', methods=['GET'])
-def how_to_recycle_view():
+def where_recycle_view():
     _json = request.get_json()
     return render_template('index.html')
 
