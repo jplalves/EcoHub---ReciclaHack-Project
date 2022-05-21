@@ -20,7 +20,7 @@ Após a instalação execute o comando:
 
 `pipenv install`
 
-### Iniciar:
+## Inicializar projeto:
 
 Execute o arquivo app/main.py
 
