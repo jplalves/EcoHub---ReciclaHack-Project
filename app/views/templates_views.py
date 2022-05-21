@@ -1,5 +1,5 @@
 import json
-
+from app.actions.garbage_actions import get_garbage
 from app.actions.cooperative_actions import login_coop
 from app.actions.users_actions import create_user, login_user
 from flask import Blueprint, render_template, request, redirect, Response
@@ -52,3 +52,12 @@ def register_view():
     if user:
         return render_template('index.html', user=user.serialize())
     return render_template('register.html', status=False)
+
+
+@app_views.route('/tips', methods=['POST', 'GET'])
+def tips_view():
+    if request.method == 'GET':
+        list_garbage = get_garbage()
+        return render_template('tips.html', list_garbage=list_garbage)
+
+    return render_template('tips.html')
