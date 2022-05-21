@@ -1,5 +1,5 @@
 from typing import Dict, List
-from app.models.comments import Comments
+from app.models.entities.comments import Comments
 from database.repository import save, delete, commit
 
 

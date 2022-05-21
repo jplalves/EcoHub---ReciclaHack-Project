@@ -1,6 +1,6 @@
 from typing import Dict, List
 from datetime import timedelta
-from app.models.cooperative import Cooperative
+from app.models.entities.cooperative import Cooperative
 from flask_jwt_extended import create_access_token
 from database.repository import save, delete, commit
 from werkzeug.security import generate_password_hash

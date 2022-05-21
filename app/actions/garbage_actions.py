@@ -1,5 +1,5 @@
 from typing import Dict, List
-from app.models.garbage import Garbage
+from app.models.entities.garbage import Garbage
 from database.repository import save, delete, commit
 
 
