@@ -23,6 +23,12 @@ class User(db.Model):
     def serialize(self):
         return {
                 'id': self.id,
+                'name': self.name,
                 'email': self.email,
+                'address': self.address,
+                'complement': self.complement,
+                'cpf': self.cpf,
+                'birth_date': self.birth_date,
+                'cep': self.cep,
                 'active': self.active
                 }

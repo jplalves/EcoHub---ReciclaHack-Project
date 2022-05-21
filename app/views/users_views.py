@@ -6,6 +6,7 @@ from app.actions.users_actions import \
     get_user_by_id, get_users, update_user, create_user, login, deleted_user
 
 from app.models.users import User
+from app.models.garbage import Garbage
 
 
 app_users = Blueprint('users', __name__)
