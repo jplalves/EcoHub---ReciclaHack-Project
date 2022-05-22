@@ -22,7 +22,7 @@
   <nav class="navbar navbar-expand-lg px-5"
     style="background: linear-gradient(to right, #000000, #0f9b0f); font-family: 'Cairo', sans-serif;">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#" style="font-size: 38px; font-family: 'Cairo', sans-serif; font-weight: 900">
+      <a class="navbar-brand" href="/" style="font-size: 38px; font-family: 'Cairo', sans-serif; font-weight: 900">
         <img src="{{ url_for('static', filename='images/ecohub-nav-logo.png') }}" alt="nav-logo" width="55" height="55"
           class="d-inline-block align-text-center" style="position: relative; bottom: 4px">
         <span style="color: white;">EcoHub</span>
@@ -85,12 +85,12 @@
         <div class="row row-cols-1 row-cols-md-3 g-4 py-3"
           style="width: 100%; padding-right: 4rem!important; padding-left: 4rem!important;">
           <!-- TODO: Refactor query to pass garbage type as parameter and return only garbages of selected type -->
-          {% for garbage in list_garbage %}
+          {% for garbage in list_garbage_plastic %}
           <div class="card" style="border: 3px solid black;">
-            <a href="#" style="text-decoration: none; color: black; font-family: 'Cairo', sans-serif;">
+            <a href="garbage/{{garbage.id}}" style="text-decoration: none; color: black; font-family: 'Cairo', sans-serif;">
               <!-- TODO: substitute current src with entity's URI attribute -->
               <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/042.webp" class="card-img-top py-2"
-                alt="Garbage image" />
+                alt="Garbage image"/>
               <div class="card-body">
                 <h5 class="card-title">{{garbage.name}}</h5>
                 <p class="card-text">{{garbage.description}}</p>
@@ -104,35 +104,79 @@
         </div>
       </section>
     </div>
-    <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">...
+    <div class="tab-pane fade" id="pills-glass" role="tabpanel" aria-labelledby="pills-glass-tab" tabindex="0">
+      <section style="background-color: #ffcd00; background-image: linear-gradient(315deg, #ffcd00 0%, #005238 74%); height: 100vh; margin-top: 24px;">
+        <div class="row row-cols-1 row-cols-md-3 g-4 py-3"
+          style="width: 100%; padding-right: 4rem!important; padding-left: 4rem!important;">
+          <!-- TODO: Refactor query to pass garbage type as parameter and return only garbages of selected type -->
+          {% for garbage in list_garbage_glass %}
+          <div class="card" style="border: 3px solid black;">
+            <a href="garbage/{{garbage.id}}" style="text-decoration: none; color: black; font-family: 'Cairo', sans-serif;">
+              <!-- TODO: substitute current src with entity's URI attribute -->
+              <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/042.webp" class="card-img-top py-2"
+                alt="Garbage image"/>
+              <div class="card-body">
+                <h5 class="card-title">{{garbage.name}}</h5>
+                <p class="card-text">{{garbage.description}}</p>
+                <div class="py-3">
+                  <a href="garbage" class="btn btn-success">Ver dicas</a>
+                </div>
+              </div>
+            </a>
+          </div>
+          {% endfor %}
+        </div>
+      </section>
     </div>
-    <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab" tabindex="0">...
+    <div class="tab-pane fade" id="pills-paper" role="tabpanel" aria-labelledby="pills-paper-tab" tabindex="0">
+      <section style="background-color: #ffcd00; background-image: linear-gradient(315deg, #ffcd00 0%, #005238 74%); height: 100vh; margin-top: 24px;">
+        <div class="row row-cols-1 row-cols-md-3 g-4 py-3"
+          style="width: 100%; padding-right: 4rem!important; padding-left: 4rem!important;">
+          <!-- TODO: Refactor query to pass garbage type as parameter and return only garbages of selected type -->
+          {% for garbage in list_garbage_paper %}
+          <div class="card" style="border: 3px solid black;">
+            <a href="garbage/{{garbage.id}}" style="text-decoration: none; color: black; font-family: 'Cairo', sans-serif;">
+              <!-- TODO: substitute current src with entity's URI attribute -->
+              <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/042.webp" class="card-img-top py-2"
+                alt="Garbage image"/>
+              <div class="card-body">
+                <h5 class="card-title">{{garbage.name}}</h5>
+                <p class="card-text">{{garbage.description}}</p>
+                <div class="py-3">
+                  <a href="garbage" class="btn btn-success">Ver dicas</a>
+                </div>
+              </div>
+            </a>
+          </div>
+          {% endfor %}
+        </div>
+      </section>
     </div>
-    <div class="tab-pane fade" id="pills-disabled" role="tabpanel" aria-labelledby="pills-disabled-tab" tabindex="0">...
+    <div class="tab-pane fade" id="pills-metal" role="tabpanel" aria-labelledby="pills-metal-tab" tabindex="0">
+      <section style="background-color: #ffcd00; background-image: linear-gradient(315deg, #ffcd00 0%, #005238 74%); height: 100vh; margin-top: 24px;">
+        <div class="row row-cols-1 row-cols-md-3 g-4 py-3"
+          style="width: 100%; padding-right: 4rem!important; padding-left: 4rem!important;">
+          <!-- TODO: Refactor query to pass garbage type as parameter and return only garbages of selected type -->
+          {% for garbage in list_garbage_metal %}
+          <div class="card" style="border: 3px solid black;">
+            <a href="garbage/{{garbage.id}}" style="text-decoration: none; color: black; font-family: 'Cairo', sans-serif;">
+              <!-- TODO: substitute current src with entity's URI attribute -->
+              <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/042.webp" class="card-img-top py-2"
+                alt="Garbage image"/>
+              <div class="card-body">
+                <h5 class="card-title">{{garbage.name}}</h5>
+                <p class="card-text">{{garbage.description}}</p>
+                <div class="py-3">
+                  <a href="garbage" class="btn btn-success">Ver dicas</a>
+                </div>
+              </div>
+            </a>
+          </div>
+          {% endfor %}
+        </div>
+      </section>
     </div>
   </div>
-  <!--  <nav class="navbar navbar-expand-lg px-5" style="background-color: black; border-top: 1px solid greenyellow; font-family: 'Cairo', sans-serif;">-->
-  <!--    <div class="container-fluid">-->
-  <!--      <div class="collapse navbar-collapse" id="navbarSub">-->
-  <!--        <ul class="navbar-nav me-auto mb-2 mb-lg-0">-->
-  <!--          <li class="nav-item" style="font-size: 20px;">-->
-  <!--            <a class="nav-link active" aria-current="page" href="#"-->
-  <!--              style="color: greenyellow; font-weight: 600">Plástico/isopor</a>-->
-  <!--          </li>-->
-  <!--          <li class="nav-item" style="font-size: 20px;">-->
-  <!--            <a class="nav-link" href="/tips-g" style="font-weight: 700; color: white">Vidros</a>-->
-  <!--          </li>-->
-  <!--          <li class="nav-item" style="font-size: 20px;">-->
-  <!--            <a class="nav-link" href="/tips-p" style="font-weight: 700; color: white">Papel</a>-->
-  <!--          </li>-->
-  <!--          <li class="nav-item" style="font-size: 20px;">-->
-  <!--            <a class="nav-link" href="/tips-m" style="font-weight: 700; color: white">Metal</a>-->
-  <!--          </li>-->
-  <!--        </ul>-->
-  <!--      </div>-->
-  <!--    </div>-->
-  <!--  </nav>-->
-
 
 </body>
 
