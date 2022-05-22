@@ -93,7 +93,6 @@ def register_garbage_view():
         file.save(path)
 
         data = request.values
-        ds_url = data['ds_url']
-        create_garbage(data, ds_url)
+        create_garbage(data, ds_url=path)
         return render_template('/forms/form_garbage.html')
 
