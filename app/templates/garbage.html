@@ -128,13 +128,20 @@
     </div>
     <div class="accordion" id="accordionPanelsStayOpenExample"
       style="background: background-color: #ffcd00; background-image: linear-gradient(315deg, #ffcd00 0%, #005238 74%);">
+      {% for comment in comments %}
       <div class="accordion-item">
-        <h2 class="accordion-header" id="panelsStayOpen-headingTest">
+        <h2 class="accordion-header" id="panelsStayOpen-heading{{comment.id}}">
           <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-            data-bs-target="#panelsStayOpen-collapseTest" aria-expanded="false"
-            aria-controls="panelsStayOpen-collapseTest">
-            <h6>Joshua - 01/01/2020 - <span id="upvotes-number">0</span> upvotes
+            data-bs-target="#panelsStayOpen-collapse{{comment.id}}" aria-expanded="false"
+            aria-controls="panelsStayOpen-collapse{{comment.id}}">
+            <h6>{{comment.username}} - {{comment.creation_date}} - {{comment.up_votes}} upvotes
+              {% if comment.is_coop %}
+              <span class="badge bg-success">Cooperativa</span>
+              {% endif %}
+
+              {% if comment.id == top_comment.id %}
               <span class="badge bg-danger">Top</span>
+              {% endif %}
             </h6>
           </button>
         </h2>
@@ -147,10 +154,11 @@
             <span style="font-family: 'Cairo', sans-serif; position:relative; left: 3px; top: 1px; font-weight: 600;">Votar</span>
           </button>
           <div class="accordion-body">
-            Yamete kudasai
+            {{comment.message}}
           </div>
         </div>
       </div>
+      {% endfor %}
     </div>
   </section>
 
@@ -202,7 +210,7 @@
       if (userCookie) {
         let numberOfUpvotesContainer = document.getElementById('upvotes-number');
         let numberOfUpvotes = parseInt(numberOfUpvotesContainer.innerText);
-        
+
         if (upvoteButton.style.backgroundColor == "white") {
           upvoteButton.style.backgroundColor = "orange";
           numberOfUpvotes += 1;
