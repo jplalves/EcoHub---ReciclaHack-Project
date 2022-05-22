@@ -7,10 +7,9 @@ def create_comment(data: Dict) -> Comments or None:
     try:
         return save(Comments(
             message=data.get('message'),
-            up_votes=data.get('up_votes'),
-            is_coop=data.get('is_coop'),
             creation_date=data.get('creation_date'),
-            post_id=data.get('post_id'),
+            garbage_id=data.get('garbage_id'),
+            cooperative_id=data.get('cooperative_id'),
             user_id=data.get('user_id'),
             active=data.get('active')
         ))

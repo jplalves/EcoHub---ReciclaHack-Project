@@ -1,5 +1,6 @@
 from uuid import uuid4
 from database import db
+from datetime import datetime
 from sqlalchemy.orm import backref
 
 
@@ -17,7 +18,7 @@ class Comments(db.Model):
     # Columns
     id = db.Column(db.String(36), default=lambda: str(uuid4()), primary_key=True)
     message = db.Column(db.String(1500), default=lambda: str(uuid4()))
-    creation_date = db.Column(db.Date(), nullable=False)
+    creation_date = db.Column(db.Date(), default=datetime.utcnow)
     active = db.Column(db.Boolean(), default=True)
 
     @property
@@ -34,5 +35,6 @@ class Comments(db.Model):
                 'username': self.user.name,
                 'garbage_id': self.garbage_id,
                 'cooperative_id': self.cooperative_id,
+                'creation_date': self.creation_date,
                 'active': self.active
                 }
