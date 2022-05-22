@@ -13,15 +13,16 @@ class Garbage(db.Model):
     type_of_garbage = db.Column(db.String(15), nullable=False)
     active = db.Column(db.Boolean(), default=True)
 
-    def type_color(self):
+    def type(self):
         _type = TypeOfGarbage()
-        return _type.get_type(self.type_of_garbage)
+        return _type.get_type(self.type_of_garbage.lower())
 
     def serialize(self):
         return {
                 'id': self.id,
                 'name': self.name,
                 'description': self.description,
-                'type_of_garbage': self.type_color(),
+                'type_of_garbage': self.type(),
+                'name_type': self.type_of_garbage,
                 'active': self.active
                 }

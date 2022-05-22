@@ -17,16 +17,21 @@ class Comments(db.Model):
     # Columns
     id = db.Column(db.String(36), default=lambda: str(uuid4()), primary_key=True)
     message = db.Column(db.String(1500), default=lambda: str(uuid4()))
-    up_votes = db.Column(db.Integer)
     active = db.Column(db.Boolean(), default=True)
+
+    @property
+    def up_votes(self):
+        return len(self.comment_liked)
 
     def serialize(self):
         return {
                 'id': self.id,
                 'message': self.message,
                 'up_votes': self.up_votes,
-                'is_coop': self.is_coop,
                 'user': self.user.serialize(),
-                'post_id': self.post_id,
+                'user_id': self.user_id,
+                'username': self.user.name,
+                'garbage_id': self.garbage_id,
+                'cooperative_id': self.cooperative_id,
                 'active': self.active
                 }

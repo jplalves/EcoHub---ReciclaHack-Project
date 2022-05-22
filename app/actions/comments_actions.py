@@ -22,7 +22,6 @@ def update_comment(comment_id: str, data: Dict) -> Comments:
     list_keys = list(data.keys())
 
     comment.message = data.get('message') if data.get('message') else comment.message
-    comment.up_votes = data.get('up_votes') if list_keys.count('up_votes') else comment.up_votes
     comment.is_coop = data.get('is_coop') if data.get('is_coop') else comment.is_coop
     comment.user_id = data.get('user_id') if data.get('user_id') else comment.user_id
     comment.post_id = data.get('post_id') if list_keys.count('post_id') else comment.post_id
@@ -48,5 +47,5 @@ def get_comment_by_id(comment_id: str) -> Comments:
     return Comments.query.get(comment_id)
 
 
-def get_comment_by_garbage_id(garbage_id: str) -> Comments:
+def get_comment_by_garbage_id(garbage_id: str) -> List[Comments]:
     return Comments.query.filter_by(garbage_id=garbage_id).all()
