@@ -7,9 +7,9 @@ class CommentLikes(db.Model):
 
     # Foreign Key
     id = db.Column(db.String(36), default=lambda: str(uuid4()), primary_key=True)
-    comment_id = db.Column(db.Integer, db.ForeignKey('comments.id'))
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    cooperative_id = db.Column(db.Integer, db.ForeignKey('cooperative.id'))
+    comment_id = db.Column(db.String(36), db.ForeignKey('comments.id'))
+    user_id = db.Column(db.String(36), db.ForeignKey('users.id'))
+    cooperative_id = db.Column(db.String(36), db.ForeignKey('cooperative.id'))
 
     def serialize(self):
         return {
