@@ -11,6 +11,7 @@ def create_garbage(data: Dict) -> Garbage or None:
             name=data.get('name'),
             description=data.get('description'),
             active=data.get('active'),
+            ds_url=data.get('ds_url'),
             type_of_garbage=_type.get_type(data.get('type')).get('name')
         ))
     except (AttributeError, KeyError, TypeError):
