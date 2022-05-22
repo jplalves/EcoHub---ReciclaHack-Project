@@ -22,11 +22,11 @@ class Cooperative(db.Model):
     def serialize(self):
         return {
                 'id': self.id,
-                'name': self.fantasy_name,
+                'fantasy_name': self.fantasy_name,
                 'email': self.email,
                 'address': self.address,
                 'complement': self.complement,
-                'cpf': self.cpf,
+                'cnpj': self.cpf,
                 'birth_date': self.birth_date,
                 'cep': self.cep,
                 'active': self.active,

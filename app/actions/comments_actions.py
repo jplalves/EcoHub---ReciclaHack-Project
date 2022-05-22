@@ -3,14 +3,13 @@ from app.models.entities.comments import Comments
 from database.repository import save, delete, commit
 
 
-def create_comment(data: Dict, garbage_id, cooperative_id) -> Comments or None:
+def create_comment(data: Dict, garbage_id, cooperative_id="", user_id="") -> Comments or None:
     try:
         return save(Comments(
             message=data.get('message'),
-            creation_date=data.get('creation_date'),
             garbage_id=garbage_id,
             cooperative_id=cooperative_id,
-            user_id=data.get('user_id'),
+            user_id=user_id,
             active=data.get('active')
         ))
     except (AttributeError, KeyError, TypeError):

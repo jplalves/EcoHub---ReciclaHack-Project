@@ -22,19 +22,20 @@ class Comments(db.Model):
     active = db.Column(db.Boolean(), default=True)
 
     @property
-    def up_votes(self):
-        return self.up_votes
+    def likes(self):
+        return len(self.comment_liked)
 
     def serialize(self):
         return {
                 'id': self.id,
                 'message': self.message,
-                'up_votes': self.up_votes,
-                'user': self.user.serialize(),
+                'up_votes': len(self.comment_liked),
+                'user': self.user.serialize() if self.user else None,
                 'user_id': self.user_id,
-                'username': self.user.name,
+                'username': self.user.name if self.user else None,
                 'garbage_id': self.garbage_id,
                 'cooperative_id': self.cooperative_id,
+                'is_coop': True if self.cooperative_id else False,
                 'creation_date': self.creation_date,
                 'active': self.active
                 }
