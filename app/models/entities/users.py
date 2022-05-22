@@ -14,7 +14,7 @@ class User(db.Model):
     cep = db.Column(db.String(20), nullable=True)
     address = db.Column(db.String(128), nullable=True)
     complement = db.Column(db.String(128), nullable=True)
-    cpf_or_cnpj = db.Column(db.String(20), nullable=True)
+    cpf = db.Column(db.String(20), nullable=True)
     birth_date = db.Column(db.Date(), nullable=True)
     active = db.Column(db.Boolean(), default=True)
 
