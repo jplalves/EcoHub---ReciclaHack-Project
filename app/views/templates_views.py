@@ -1,9 +1,10 @@
 import json
+from app.models.type_of_garbage import TypeOfGarbage
 from app.actions.cooperative_actions import login_coop
 from app.actions.users_actions import create_user, login_user
 from flask import Blueprint, render_template, request, redirect
 from app.actions.comments_actions import get_comment_by_garbage_id
-from app.actions.garbage_actions import get_garbage, get_garbage_by_id
+from app.actions.garbage_actions import get_garbage, get_garbage_by_id, get_garbage_by_type
 
 app_views = Blueprint('views', __name__)
 
@@ -55,13 +56,17 @@ def register_view():
     return render_template('register.html', status=False)
 
 
-@app_views.route('/tips', methods=['POST', 'GET'])
+@app_views.route('/tips', methods=['GET'])
 def tips_view():
     if request.method == 'GET':
-        list_garbage = get_garbage()
-        return render_template('tips.html', list_garbage=list_garbage)
-
-    return render_template('tips.html')
+        _tp = TypeOfGarbage()
+        list_garbage_plastic = get_garbage_by_type(type_of_garbage=_tp.plastic.get('name'))
+        list_garbage_glass = get_garbage_by_type(type_of_garbage=_tp.glass.get('name'))
+        list_garbage_metal = get_garbage_by_type(type_of_garbage=_tp.metal.get('name'))
+        list_garbage_paper = get_garbage_by_type(type_of_garbage=_tp.paper.get('name'))
+        return render_template('tips.html', list_garbage_plastic=list_garbage_plastic,
+                               list_garbage_glass=list_garbage_glass, list_garbage_metal=list_garbage_metal,
+                               list_garbage_paper=list_garbage_paper)
 
 
 @app_views.route('/garbage/<garbage_id>', methods=['POST', 'GET'])
