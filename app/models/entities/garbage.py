@@ -9,8 +9,8 @@ class Garbage(db.Model):
     # Columns
     id = db.Column(db.String(36), default=lambda: str(uuid4()), primary_key=True)
     name = db.Column(db.String(128), nullable=False)
-    description = db.Column(db.String(128), nullable=False)
-    type_of_garbage = db.Column(db.String(128), nullable=False)
+    description = db.Column(db.String(500), nullable=False)
+    type_of_garbage = db.Column(db.String(15), nullable=False)
     active = db.Column(db.Boolean(), default=True)
 
     def type_color(self):
