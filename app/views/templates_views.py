@@ -87,9 +87,9 @@ def register_garbage_view():
 
 
 @app_views.route('/register/tip/<garbage_id>', methods=['POST'])
-def register_garbage_view():
+def register_comment_view(garbage_id):
     if request.method == "POST":
         data = request.values
-        create_comment(data)
+        create_comment(data, garbage_id=garbage_id, cooperative_id="", )
         return render_template('/forms/form_garbage.html')
 
