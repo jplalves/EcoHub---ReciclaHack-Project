@@ -4,8 +4,8 @@ from app.models.type_of_garbage import TypeOfGarbage
 from app.actions.cooperative_actions import login_coop
 from app.actions.users_actions import create_user, login_user
 from flask import Blueprint, render_template, request, redirect
-from app.actions.garbage_actions import get_garbage_by_id, get_garbage_by_type, create_garbage
-from app.actions.comments_actions import get_comment_by_garbage_id, get_comment_sort_by_up_votes, create_comment
+from app.actions.comments_actions import get_comment_by_garbage_id, create_comment
+from app.actions.garbage_actions import get_garbage_by_id, get_garbage_by_type, create_garbage, get_garbage_by_name
 
 app_views = Blueprint('views', __name__)
 
@@ -58,6 +58,13 @@ def tips_view():
                                list_garbage_glass=list_garbage_glass,
                                list_garbage_metal=list_garbage_metal,
                                list_garbage_paper=list_garbage_paper)
+
+
+@app_views.route('/tips/search/', methods=['GET'])
+def tips_search_view():
+    data = request.values
+    list_garbage = get_garbage_by_name(garbage_name=data['garbage_name'])
+    return render_template('tips_search.html', list_garbage=list_garbage)
 
 
 @app_views.route('/garbage/<garbage_id>', methods=['POST', 'GET'])
