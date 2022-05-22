@@ -108,7 +108,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div class="modal-body">
-                    <form action="/register/tip/{{ garbage.id }}/">
+                    <form action="/register/tip/{{ garbage.id }}/" id="tip-register-form">
                       <div class="mb-3">
                         <label for="user-name" class="col-form-label" style="font-family: 'Cairo', sans-serif; color: white; font-weight: 600;">Usuário:</label>
                         <!-- TODO: Populate field with token.username -->
@@ -183,6 +183,8 @@
     if (!userCookie) {
       document.getElementById('new-tip-btn').style.display = "none";
     }
+
+    document.getElementById('tip-register-form').action += getCookie('access-token');
   </script>
 </body>
 
