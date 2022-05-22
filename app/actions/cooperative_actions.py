@@ -74,4 +74,4 @@ def get_cooperative_by_id(cooperative_id: str) -> Cooperative:
 
 
 def get_cooperative_by_email(email: str) -> Cooperative:
-    return Cooperative.query.filter(Cooperative.email == email).first()
+    return Cooperative.query.filter_by(email=email).first()
