@@ -50,3 +50,7 @@ def get_garbage_by_type(type_of_garbage) -> List[Garbage]:
 
 def get_garbage_by_id(garbage_id: str) -> Garbage:
     return Garbage.query.get(garbage_id)
+
+
+def get_garbage_by_name(garbage_name: str) -> List[Garbage]:
+    return Garbage.query.filter(Garbage.name.like(garbage_name)).all()
