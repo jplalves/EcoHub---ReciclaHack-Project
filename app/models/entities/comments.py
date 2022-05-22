@@ -12,6 +12,8 @@ class Comments(db.Model):
     cooperative_id = db.Column(db.Integer, db.ForeignKey('cooperative.id'))
     user = db.relationship("User", backref=backref("users", uselist=False))
 
+    user_liked = db.relationship("CommentLikes", backref=backref("comment_likes", uselist=True))
+
     # Columns
     id = db.Column(db.String(36), default=lambda: str(uuid4()), primary_key=True)
     message = db.Column(db.String(1500), default=lambda: str(uuid4()))
