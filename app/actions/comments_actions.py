@@ -50,3 +50,9 @@ def get_comment_by_id(comment_id: str) -> Comments:
 
 def get_comment_by_garbage_id(garbage_id: str) -> List[Comments]:
     return Comments.query.filter_by(garbage_id=garbage_id).all()
+
+
+def get_comment_sort_by_up_votes() -> List[Comments]:
+    comments = get_comments()
+    for comment in comments:
+        print(comment)

@@ -1,10 +1,11 @@
+import os
 import json
 from app.models.type_of_garbage import TypeOfGarbage
 from app.actions.cooperative_actions import login_coop
 from app.actions.users_actions import create_user, login_user
 from flask import Blueprint, render_template, request, redirect
-from app.actions.comments_actions import get_comment_by_garbage_id
-from app.actions.garbage_actions import get_garbage, get_garbage_by_id, get_garbage_by_type
+from app.actions.comments_actions import get_comment_by_garbage_id, get_comment_sort_by_up_votes
+from app.actions.garbage_actions import get_garbage, get_garbage_by_id, get_garbage_by_type, create_garbage
 
 app_views = Blueprint('views', __name__)
 
@@ -65,7 +66,8 @@ def tips_view():
         list_garbage_metal = get_garbage_by_type(type_of_garbage=_tp.metal.get('name'))
         list_garbage_paper = get_garbage_by_type(type_of_garbage=_tp.paper.get('name'))
         return render_template('tips.html', list_garbage_plastic=list_garbage_plastic,
-                               list_garbage_glass=list_garbage_glass, list_garbage_metal=list_garbage_metal,
+                               list_garbage_glass=list_garbage_glass,
+                               list_garbage_metal=list_garbage_metal,
                                list_garbage_paper=list_garbage_paper)
 
 
@@ -74,3 +76,23 @@ def garbage_view(garbage_id):
     garbage = get_garbage_by_id(garbage_id)
     comments = [comment.serialize() for comment in get_comment_by_garbage_id(garbage_id)]
     return render_template('garbage.html', garbage=garbage.serialize(), comments=comments)
+
+
+@app_views.route('/ranking', methods=['GET'])
+def ranking_view():
+    return render_template('ranking.html')
+
+
+@app_views.route('/register/garbage', methods=['POST', 'GET'])
+def register_garbage_view():
+    if request.method == "GET":
+        return render_template('/forms/form_garbage.html')
+    elif request.method == "POST":
+        file = request.files['file']
+        path = os.path.join('app/templates/images/garbage', file.filename)
+        file.save(path)
+
+        data = request.values
+        create_garbage(data, ds_url=path)
+        return render_template('/forms/form_garbage.html')
+
