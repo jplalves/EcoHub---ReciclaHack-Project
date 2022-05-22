@@ -69,7 +69,7 @@
         <div class="row row-cols-1 row-cols-md-3 g-4 py-3"
           style="width: 100%; padding-right: 4rem!important; padding-left: 4rem!important;">
           <!-- TODO: Refactor query to pass garbage type as parameter and return only garbages of selected type -->
-          {% for garbage in list_garbage%}
+          {% for garbage in list_garbage %}
           <div class="card" style="border: 3px solid black;">
             <a href="garbage/{{garbage.id}}" style="text-decoration: none; color: black; font-family: 'Cairo', sans-serif;">
               <!-- TODO: substitute current src with entity's URI attribute -->

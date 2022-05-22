@@ -67,6 +67,13 @@ def tips_search_view():
     return render_template('tips_search.html', list_garbage=list_garbage)
 
 
+@app_views.route('/tips/search/garbage/<garbage_id>', methods=['POST', 'GET'])
+def type_search_garbage_view(garbage_id):
+    garbage = get_garbage_by_id(garbage_id)
+    comments = [comment.serialize() for comment in get_comment_by_garbage_id(garbage_id)]
+    return render_template('garbage.html', garbage=garbage.serialize(), comments=comments)
+
+
 @app_views.route('/garbage/<garbage_id>', methods=['POST', 'GET'])
 def garbage_view(garbage_id):
     garbage = get_garbage_by_id(garbage_id)
