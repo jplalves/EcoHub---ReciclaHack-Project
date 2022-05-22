@@ -2,10 +2,9 @@
 
 class TypeOfGarbage:
 
-    plastic = {"name": "Plástico", "color": "red"}
-    glass = {"name": "Vidro", "color": "green"}
-    organic = {"name": "Orgânico", "color": "brown"}
-    paper = {"name": "Papel", "color": "blue"}
+    plastic = {"name": "Plastic", "color": "red"}
+    glass = {"name": "Glass", "color": "green"}
+    paper = {"name": "Paper", "color": "blue"}
     metal = {"name": "Metal", "color": "yellow"}
 
     def get_type(self, type_name):
