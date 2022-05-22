@@ -128,29 +128,29 @@
     </div>
     <div class="accordion" id="accordionPanelsStayOpenExample"
       style="background: background-color: #ffcd00; background-image: linear-gradient(315deg, #ffcd00 0%, #005238 74%);">
-      {% for comment in comments %}
       <div class="accordion-item">
-        <h2 class="accordion-header" id="panelsStayOpen-heading{{comment.id}}">
+        <h2 class="accordion-header" id="panelsStayOpen-headingTest">
           <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-            data-bs-target="#panelsStayOpen-collapse{{comment.id}}" aria-expanded="false"
-            aria-controls="panelsStayOpen-collapse{{comment.id}}">
-            <h6>{{comment.username}} - {{comment.creation_date}} - {{comment.up_votes}} upvotes
-              {% if comment.cooperative_id %}
-              <span class="badge bg-success">Cooperativa</span>
-              {% else %}
+            data-bs-target="#panelsStayOpen-collapseTest" aria-expanded="false"
+            aria-controls="panelsStayOpen-collapseTest">
+            <h6>Joshua - 01/01/2020 - <span id="upvotes-number">0</span> upvotes
               <span class="badge bg-danger">Top</span>
-              {% endif %}
             </h6>
           </button>
         </h2>
-        <div id="panelsStayOpen-collapse{{comment.id}}" class="accordion-collapse collapse"
-          aria-labelledby="panelsStayOpen-heading{{comment.id}}">
+        <div id="panelsStayOpen-collapseTest" class="accordion-collapse collapse"
+          aria-labelledby="panelsStayOpen-headingTest">
+          <button class="btn" style="position:relative; left:5px; top: 8px; background-color: white;" id="upvote-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-arrow-up-square" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M15 2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2zM0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm8.5 9.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z"/>
+            </svg>
+            <span style="font-family: 'Cairo', sans-serif; position:relative; left: 3px; top: 1px; font-weight: 600;">Votar</span>
+          </button>
           <div class="accordion-body">
-            {{comment.message}}
+            Yamete kudasai
           </div>
         </div>
       </div>
-      {% endfor %}
     </div>
   </section>
 
@@ -194,6 +194,29 @@
     if (!userCookie) {
       document.getElementById('new-tip-btn').style.display = "none";
     }
+
+    let upvoteButton = document.getElementById('upvote-btn');
+
+    upvoteButton.onclick = function () {
+      upvoteButton.style.backgroundColor = "orange";
+      if (userCookie) {
+        let numberOfUpvotesContainer = document.getElementById('upvotes-number');
+        let numberOfUpvotes = parseInt(numberOfUpvotesContainer.innerText);
+        
+        if (upvoteButton.style.backgroundColor == "white") {
+          upvoteButton.style.backgroundColor = "orange";
+          numberOfUpvotes += 1;
+          numberOfUpvotesContainer.innerText = numberOfUpvotes;
+        } else {
+          upvoteButton.style.backgroundColor = "white";
+          numberOfUpvotes -= 1;
+          numberOfUpvotesContainer.innerText = numberOfUpvotes;
+        }
+      } else {
+        alert("Você deve estar logado para votar em dicas.");
+      }
+    };
+
   </script>
 </body>
 
