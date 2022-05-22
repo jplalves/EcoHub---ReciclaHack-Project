@@ -29,7 +29,7 @@ def create_user(data: Dict) -> User or None:
             cep=data.get('cep'),
             address=data.get('address'),
             complement=data.get('complement'),
-            cpf_or_cnpj=data.get('cpf'),
+            cpf=data.get('cpf'),
             birth_date=datetime.strptime(data.get('birth_date'), "%Y-%m-%d"),
             active=data.get('active')
         ))
