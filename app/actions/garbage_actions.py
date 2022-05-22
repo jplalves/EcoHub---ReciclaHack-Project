@@ -53,4 +53,5 @@ def get_garbage_by_id(garbage_id: str) -> Garbage:
 
 
 def get_garbage_by_name(garbage_name: str) -> List[Garbage]:
-    return Garbage.query.filter(Garbage.name.like(garbage_name)).all()
+    name = "%{}%".format(garbage_name)
+    return Garbage.query.filter(Garbage.name.like(name)).all()
