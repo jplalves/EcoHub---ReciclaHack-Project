@@ -1,9 +1,7 @@
-import os
-import json
+import jwt
 from app.models.type_of_garbage import TypeOfGarbage
-from app.actions.cooperative_actions import login_coop
 from app.actions.users_actions import create_user, login_user
-from flask import Blueprint, render_template, request, redirect
+from flask import Blueprint, render_template, request, redirect, url_for
 from app.actions.comments_actions import get_comment_by_garbage_id, create_comment
 from app.actions.garbage_actions import get_garbage_by_id, get_garbage_by_type, create_garbage, get_garbage_by_name
 
@@ -77,8 +75,17 @@ def type_search_garbage_view(garbage_id):
 @app_views.route('/garbage/<garbage_id>', methods=['POST', 'GET'])
 def garbage_view(garbage_id):
     garbage = get_garbage_by_id(garbage_id)
-    comments = [comment.serialize() for comment in get_comment_by_garbage_id(garbage_id)]
-    return render_template('garbage.html', garbage=garbage.serialize(), comments=comments)
+    comments = get_comment_by_garbage_id(garbage_id)
+    list_comment = []
+    top_comment = comments[0]
+
+    for comment in comments:
+        if top_comment.likes < top_comment.likes:
+            top_comment = comment
+        list_comment.append(comment.serialize())
+
+    return render_template('garbage.html', garbage=garbage.serialize(),
+                           comments=list_comment, top_comment=top_comment.serialize())
 
 
 @app_views.route('/ranking', methods=['GET'])
@@ -100,10 +107,22 @@ def register_garbage_view():
         return render_template('/forms/form_garbage.html')
 
 
-@app_views.route('/register/tip/<garbage_id>', methods=['POST'])
-def register_comment_view(garbage_id):
+@app_views.route('/register/tip/<garbage_id>/<token>', methods=['POST'])
+def register_comment_view(garbage_id, token):
     if request.method == "POST":
         data = request.values
-        create_comment(data, garbage_id=garbage_id, cooperative_id="", )
-        return render_template('/forms/form_garbage.html')
+        try:
+            user = jwt.decode(token, "secret", algorithms=["HS256"])
+
+            if user:
+                if user.get('cnpj'):
+                    create_comment(data, garbage_id=garbage_id, cooperative_id=user.get('id'))
+                else:
+                    create_comment(data, garbage_id=garbage_id, user_id=user.get('id'))
+
+            garbage = get_garbage_by_id(garbage_id)
+            comments = [comment.serialize() for comment in get_comment_by_garbage_id(garbage_id)]
+            return render_template('garbage.html', garbage=garbage.serialize(), comments=comments)
+        except:
+            return render_template('login.html', status=False)
 
