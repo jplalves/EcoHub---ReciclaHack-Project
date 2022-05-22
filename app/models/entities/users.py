@@ -29,7 +29,7 @@ class User(db.Model):
                 'address': self.address,
                 'complement': self.complement,
                 'cpf': self.cpf,
-                'birth_date': self.birth_date,
+                'birth_date': str(self.birth_date),
                 'cep': self.cep,
                 'active': self.active
                 }

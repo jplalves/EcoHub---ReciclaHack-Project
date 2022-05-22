@@ -14,6 +14,7 @@ flask-cors = "*"
 gunicorn = "*"
 flask-admin = "*"
 wtforms-appengine = "*"
+pyjwt = "*"
 
 [dev-packages]
 

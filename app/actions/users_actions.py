@@ -1,3 +1,4 @@
+import jwt
 from typing import Dict, List
 from datetime import timedelta, datetime
 from app.models.entities.users import User
@@ -14,8 +15,8 @@ def login_user(email, password) -> Dict or None:
             if not user.verify_password(password) or not user.active:
                 return
 
-            access_token = create_access_token(identity=user.id, expires_delta=timedelta(minutes=600))
-            return {'access_token': access_token, 'username': user.name}
+            token = jwt.encode(user.serialize(), "secret", algorithm="HS256")
+            return {"access_token": token, 'username': user.name}
     except (AttributeError, KeyError, TypeError):
         return
 
