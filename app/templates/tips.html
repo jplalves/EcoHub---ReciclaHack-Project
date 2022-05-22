@@ -20,7 +20,7 @@
 
 <body>
   <nav class="navbar navbar-expand-lg px-5"
-    style="background: linear-gradient(to right, #000000, #0f9b0f); font-family: 'Cairo', sans-serif;">
+    style="background: linear-gradient(to right, #000000, #0f9b0f); border-bottom: 1px solid greenyellow; font-family: 'Cairo', sans-serif;">
     <div class="container-fluid">
       <a class="navbar-brand" href="/" style="font-size: 38px; font-family: 'Cairo', sans-serif; font-weight: 900">
         <img src="{{ url_for('static', filename='images/ecohub-nav-logo.png') }}" alt="nav-logo" width="55" height="55"
@@ -60,7 +60,7 @@
       </div>
     </div>
   </nav>
-  <ul class="nav nav-pills mb-3 justify-content-center" style="background-color: black; border-top: 1px solid greenyellow; font-family: 'Cairo', sans-serif;" id="pills-tab" role="tablist">
+  <ul class="nav nav-pills mb-3 justify-content-center" style="background-color: black; font-family: 'Cairo', sans-serif;" id="pills-tab" role="tablist">
     <li class="nav-item" role="presentation">
       <button class="nav-link active" id="pills-plastic-tab" data-bs-toggle="pill" data-bs-target="#pills-plastic"
         type="button" role="tab" aria-controls="pills-plastic" aria-selected="true">Plástico/isopor</button>
@@ -95,7 +95,7 @@
                 <h5 class="card-title">{{garbage.name}}</h5>
                 <p class="card-text">{{garbage.description}}</p>
                 <div class="py-3">
-                  <a href="garbage" class="btn btn-success">Ver dicas</a>
+                  <a href="garbage/{{garbage.id}}" class="btn btn-success">Ver dicas</a>
                 </div>
               </div>
             </a>
