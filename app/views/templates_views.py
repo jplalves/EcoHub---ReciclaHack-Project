@@ -8,7 +8,6 @@ from app.actions.garbage_actions import get_garbage, get_garbage_by_id, get_garb
 
 app_views = Blueprint('views', __name__)
 
-
 # Templates
 @app_views.route('/', methods=['GET'])
 def home_view():
@@ -34,6 +33,7 @@ def login_view():
 
     credentials = request.values
     token = login_user(credentials.get('email'), credentials.get("password"))
+
     if token:
         return render_template('index.html', token=token)
     return render_template('login.html', status=False)
