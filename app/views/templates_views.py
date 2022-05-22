@@ -1,5 +1,6 @@
 import json
 from app.actions.garbage_actions import get_garbage
+from app.actions.comments_actions import get_comment_by_garbage_id
 from app.actions.cooperative_actions import login_coop
 from app.actions.users_actions import create_user, login_user
 from flask import Blueprint, render_template, request, redirect, Response
@@ -61,3 +62,9 @@ def tips_view():
         return render_template('tips.html', list_garbage=list_garbage)
 
     return render_template('tips.html')
+
+
+@app_views.route('/garbage/<garbage_id>', methods=['POST', 'GET'])
+def garbage_view(garbage_id):
+    comments = get_comment_by_garbage_id(garbage_id)
+    return render_template('garbage.html', comments=comments)

@@ -18,3 +18,9 @@ def view_get_cooperative():
     # _json = request.get_json()
     return get_cooperative()
 
+
+@actions_views.route('/vote/<id>', methods=['GET'])
+def view_get_cooperative():
+    # _json = request.get_json()
+    return get_cooperative()
+

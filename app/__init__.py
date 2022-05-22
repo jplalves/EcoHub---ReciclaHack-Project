@@ -7,6 +7,7 @@ from app.models.entities.users import User
 from app.models.entities.comments import Comments
 from app.models.entities.garbage import Garbage
 from app.models.entities.cooperative import Cooperative
+from app.models.entities.comment_likes import CommentLikes
 from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
 
@@ -21,6 +22,7 @@ def create_app():
     admin.add_view(ModelView(Comments, db.session))
     admin.add_view(ModelView(Garbage, db.session))
     admin.add_view(ModelView(Cooperative, db.session))
+    admin.add_view(ModelView(CommentLikes, db.session))
     JWTManager(app)
     db.init_app(app)
     migrate.init_app(app, db)

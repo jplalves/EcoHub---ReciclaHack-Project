@@ -15,48 +15,9 @@
   <title>EcoHub - Início</title>
 </head>
 <body>
-  <nav class="navbar navbar-expand-lg px-5" style="background-color: #222222;">
-<!--    linear-gradient(90deg, rgba(81,126,56,1) 0%, rgba(111,156,84,1) 35%, rgba(119,174,89,1) 50%, rgba(159,187,88,1) 100%)-->
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#" style="font-size: 38px; font-family: 'Cairo', sans-serif; font-weight: 900">
-        <img src="{{ url_for('static', filename='images/ecohub-nav-logo.png') }}" alt="nav-logo" width="55" height="55" class="d-inline-block align-text-center" style="position: relative; bottom: 4px">
-        <span style="color: #36bc16;">EcoHub</span>
-      </a>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item" style="font-size: 20px;">
-            <a class="nav-link active" aria-current="page" href="#" style="color: #36bc16; font-weight: 700;">Home</a>
-          </li>
-          <li class="nav-item" style="font-size: 20px;">
-            <a class="nav-link" href="#" style="font-weight: 600; color: white;">Dicas</a>
-          </li>
-          <li class="nav-item" style="font-size: 20px;">
-            <a class="nav-link" href="#" style="font-weight: 600; color: white;">Ranking</a>
-          </li>
-          <li class="nav-item" style="font-size: 20px;">
-            <a class="nav-link" href="/tips" style="font-weight: 600; color: white;">Prêmios</a>
-          </li>
-          {% if token %}
-            <li class="nav-item" style="font-size: 20px; opacity:50;"><span class="nav-link", style="font-weight: 600; color: white;">Olá, {{token.username}} :)</span></li>
-            <li class="nav-item" style="font-size: 20px; opacity:50; color: white;">
-              <a class="nav-link" href="/logout" style="font-weight: 600; color: red">Sair</a>
-            </li>
-          {% else %}
-            <li class="nav-item" style="font-size: 20px; color: white;">
-              <a class="nav-link" href="/register" style="font-weight: 600; color: white;">Login/Cadastro</a>
-            </li>
-          {% endif %}
-
-        </ul>
-        <form class="d-flex" role="search">
-          <input class="form-control me-2" type="search" placeholder="Procurar dicas" aria-label="Search">
-          <button class="btn btn-outline-dark" type="submit" style="font-weight: 700">Procurar</button>
-        </form>
-      </div>
-    </div>
-  </nav>
-  <section  style="background-image: url('app/templates/images/default-bg.png'); background-size: 900px;">
-      <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
+  {% include 'header.html' %}
+  <style>#home{color:white;}</style>
+  <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
       <div class="carousel-indicators">
         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -84,6 +45,5 @@
       </button>
     </div>
   </section>
-
 </body>
 </html>

@@ -46,3 +46,7 @@ def get_comments() -> List[Comments]:
 
 def get_comment_by_id(comment_id: str) -> Comments:
     return Comments.query.get(comment_id)
+
+
+def get_comment_by_garbage_id(garbage_id: str) -> Comments:
+    return Comments.query.filter_by(garbage_id=garbage_id).all()
