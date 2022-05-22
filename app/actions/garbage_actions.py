@@ -4,14 +4,14 @@ from database.repository import save, delete, commit
 from app.models.type_of_garbage import TypeOfGarbage
 
 
-def create_garbage(data: Dict) -> Garbage or None:
+def create_garbage(data: Dict, ds_url) -> Garbage or None:
     _type = TypeOfGarbage()
     try:
         return save(Garbage(
             name=data.get('name'),
             description=data.get('description'),
             active=data.get('active'),
-            ds_url=data.get('ds_url'),
+            ds_url=ds_url,
             type_of_garbage=_type.get_type(data.get('type')).get('name')
         ))
     except (AttributeError, KeyError, TypeError):
