@@ -92,11 +92,11 @@ def register_garbage_view():
         return render_template('/forms/form_garbage.html')
     elif request.method == "POST":
         file = request.files['file']
-        path = 'images/garbage' + file.filename
+        path = 'app/templates/images/garbage/' + file.filename
         file.save(path)
 
         data = request.values
-        create_garbage(data, ds_url=path)
+        create_garbage(data, ds_url=f'images/garbage/{file.filename}')
         return render_template('/forms/form_garbage.html')
 
 
