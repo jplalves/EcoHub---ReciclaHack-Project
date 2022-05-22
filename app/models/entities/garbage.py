@@ -1,6 +1,5 @@
 from uuid import uuid4
 from database import db
-from sqlalchemy.orm import backref
 
 
 class Garbage(db.Model):
