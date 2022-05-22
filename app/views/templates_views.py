@@ -66,5 +66,5 @@ def tips_view():
 
 @app_views.route('/garbage/<garbage_id>', methods=['POST', 'GET'])
 def garbage_view(garbage_id):
-    comments = get_comment_by_garbage_id(garbage_id)
+    comments = get_comment_by_garbage_id()
     return render_template('garbage.html', comments=comments)
