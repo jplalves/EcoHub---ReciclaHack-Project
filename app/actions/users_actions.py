@@ -15,7 +15,7 @@ def login_user(email, password) -> Dict or None:
                 return
 
             access_token = create_access_token(identity=user.id, expires_delta=timedelta(minutes=600))
-            return {'access_token': access_token}
+            return {'access_token': access_token, 'username': user.name}
     except (AttributeError, KeyError, TypeError):
         return
 
