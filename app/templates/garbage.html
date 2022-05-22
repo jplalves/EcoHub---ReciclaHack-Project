@@ -78,7 +78,7 @@
     <div class="card mb-3" id="garbage-card" style="font-family: 'Cairo', sans-serif;">
       <div class="row">
         <div class="col">
-          <img src="{{ url_for('static', filename='{{garbage.ds_url}}') }}" class="card-img-top"
+          <img src="{{ url_for('static', filename=garbage.ds_url) }}" class="card-img-top"
             style="max-height: 480px">
         </div>
         <div class="col" style="font-family: 'Cairo', sans-serif;">
@@ -108,15 +108,15 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div class="modal-body">
-                    <form>
+                    <form action="/register/tip/{{ garbage.id }}/">
                       <div class="mb-3">
                         <label for="user-name" class="col-form-label" style="font-family: 'Cairo', sans-serif; color: white; font-weight: 600;">Usuário:</label>
                         <!-- TODO: Populate field with token.username -->
-                        <input type="text" class="form-control" placeholder="Nome usuário" id="user-name" disabled>
+                        <input type="text" name="" class="form-control" placeholder="Nome usuário" id="user-name" disabled>
                       </div>
                       <div class="mb-3">
                         <label for="comment-message" class="col-form-label" style="font-family: 'Cairo', sans-serif; color: white; font-weight: 600;">Dica:</label>
-                        <textarea class="form-control" id="comment-message" placeholder="A dica deve ser clara e objetiva, orientando o descarte correto do material." style="height: 100px;"></textarea>
+                        <textarea name="message" class="form-control" id="comment-message" placeholder="A dica deve ser clara e objetiva, orientando o descarte correto do material." style="height: 100px;"></textarea>
                       </div>
                     </form>
                   </div>
