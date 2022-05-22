@@ -61,3 +61,8 @@ def tips_view():
         return render_template('tips.html', list_garbage=list_garbage)
 
     return render_template('tips.html')
+
+
+@app_views.route('/garbage', methods=['POST', 'GET'])
+def garbage_view():
+    return render_template('garbage.html')
