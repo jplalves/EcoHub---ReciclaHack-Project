@@ -4,10 +4,11 @@ from app.models.type_of_garbage import TypeOfGarbage
 from app.actions.cooperative_actions import login_coop
 from app.actions.users_actions import create_user, login_user
 from flask import Blueprint, render_template, request, redirect
-from app.actions.comments_actions import get_comment_by_garbage_id, get_comment_sort_by_up_votes
-from app.actions.garbage_actions import get_garbage, get_garbage_by_id, get_garbage_by_type, create_garbage
+from app.actions.garbage_actions import get_garbage_by_id, get_garbage_by_type, create_garbage
+from app.actions.comments_actions import get_comment_by_garbage_id, get_comment_sort_by_up_votes, create_comment
 
 app_views = Blueprint('views', __name__)
+
 
 # Templates
 @app_views.route('/', methods=['GET'])
@@ -77,10 +78,18 @@ def register_garbage_view():
         return render_template('/forms/form_garbage.html')
     elif request.method == "POST":
         file = request.files['file']
-        path = os.path.join('app/templates/images/garbage', file.filename)
+        path = 'images/garbage' + file.filename
         file.save(path)
 
         data = request.values
         create_garbage(data, ds_url=path)
+        return render_template('/forms/form_garbage.html')
+
+
+@app_views.route('/register/tip/<garbage_id>', methods=['POST'])
+def register_garbage_view():
+    if request.method == "POST":
+        data = request.values
+        create_comment(data)
         return render_template('/forms/form_garbage.html')
 

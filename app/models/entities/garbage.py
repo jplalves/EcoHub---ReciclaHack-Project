@@ -25,5 +25,6 @@ class Garbage(db.Model):
                 'description': self.description,
                 'type_of_garbage': self.type(),
                 'name_type': self.type_of_garbage,
+                'ds_url': self.ds_url,
                 'active': self.active
                 }
