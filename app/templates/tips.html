@@ -47,9 +47,9 @@
             <a id="login" class="nav-link" href="/register" style="color: white;">Login/Cadastro</a>
           </li>
         </ul>
-        <form class="d-flex" role="search">
-          <input class="form-control me-2" type="search" placeholder="Procurar dicas" aria-label="Search" id="tips-search">
-          <button class="btn btn-outline-dark" type="submit" style="font-weight: 700">Procurar</button>
+        <form action="/tips/search" method="get" class="d-flex" role="search">
+            <input name="garbage_name" class="form-control me-2" type="search" placeholder="Procurar dicas" aria-label="Search" id="tips-search">
+            <button class="btn btn-outline-dark" type="submit" style="font-weight: 700">Procurar</button>
         </form>
       </div>
     </div>

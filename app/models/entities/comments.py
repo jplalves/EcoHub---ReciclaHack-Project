@@ -8,9 +8,9 @@ class Comments(db.Model):
     __tablename__ = 'comments'
 
     # Foreign Key
-    garbage_id = db.Column(db.Integer, db.ForeignKey('garbage.id'))
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    cooperative_id = db.Column(db.Integer, db.ForeignKey('cooperative.id'))
+    garbage_id = db.Column(db.String(36), db.ForeignKey('garbage.id'))
+    user_id = db.Column(db.String(36), db.ForeignKey('users.id'))
+    cooperative_id = db.Column(db.String(36), db.ForeignKey('cooperative.id'))
     user = db.relationship("User", backref=backref("users", uselist=False))
 
     comment_liked = db.relationship("CommentLikes", backref=backref("comment_likes", uselist=True))
