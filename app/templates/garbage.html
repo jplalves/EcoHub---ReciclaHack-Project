@@ -94,7 +94,7 @@
         <p>
           <div style="font-size: 30px; height: 25px; font-family: 'Cairo', sans-serif;">Dicas
             <!-- TODO: Add token validation -->
-            <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#commentModal"
+            <button type="button" class="btn btn-warning" id="new-tip-btn" data-bs-toggle="modal" data-bs-target="#commentModal"
               style="color: white; font-size: 12px;">
               + Nova dica
             </button>
@@ -112,7 +112,7 @@
                       <div class="mb-3">
                         <label for="user-name" class="col-form-label" style="font-family: 'Cairo', sans-serif; color: white; font-weight: 600;">Usuário:</label>
                         <!-- TODO: Populate field with token.username -->
-                        <input type="text" class="form-control" placeholder="Nome usuário" id="user-name" disabled>
+                        <input type="text" class="form-control" id="user-name" disabled>
                       </div>
                       <div class="mb-3">
                         <label for="comment-message" class="col-form-label" style="font-family: 'Cairo', sans-serif; color: white; font-weight: 600;">Dica:</label>
@@ -159,6 +159,31 @@
       {% endfor %}
     </div>
   </section>
+
+  <script>
+    function getCookie(cname) {
+      let name = cname + "=";
+      let decodedCookie = decodeURIComponent(document.cookie);
+      let ca = decodedCookie.split(';');
+      for(let i = 0; i <ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) == ' ') {
+          c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+          return c.substring(name.length, c.length);
+        }
+      }
+      return "";
+    }
+
+    const userCookie = getCookie('username');
+    document.getElementById('user-name').placeholder = userCookie;
+
+    if (!userCookie) {
+      document.getElementById('new-tip-btn').style.display = "none";
+    }
+  </script>
 </body>
 
 </html>
