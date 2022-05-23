@@ -2,7 +2,7 @@ import jwt
 from app.models.type_of_garbage import TypeOfGarbage
 from app.actions.users_actions import create_user, login_user
 from flask import Blueprint, render_template, request, redirect, url_for
-from app.actions.comments_actions import get_comment_by_garbage_id, create_comment
+from app.actions.comments_actions import get_comment_by_garbage_id, create_comment, get_comment_by_id, Comments
 from app.actions.garbage_actions import get_garbage_by_id, get_garbage_by_type, create_garbage, get_garbage_by_name
 from app.actions.comment_likes_actions import create_like_comment
 
@@ -141,15 +141,21 @@ def register_comment_view(garbage_id, token):
 @app_views.route('/register/like_comment/<garbage_id>/<comment_id>/<token>', methods=['POST'])
 def register_like_comment_view(garbage_id, comment_id, token):
     if request.method == "POST":
-        data = request.values
         try:
             user = jwt.decode(token, "secret", algorithms=["HS256"])
+            comment: Comments = get_comment_by_id(comment_id)
+            validate = True
+            if comment:
+                if user:
+                    for likes in comment.comment_liked:
+                        if likes.user_id == user.get('id'):
+                            validate = False
 
-            if user:
-                if user.get('cnpj'):
-                    create_like_comment(comment_id=comment_id, cooperative_id=user.get('id'))
-                else:
-                    create_like_comment(comment_id=comment_id, user_id=user.get('id'))
+                if validate:
+                    if user.get('cnpj'):
+                        create_like_comment(comment_id=comment_id, cooperative_id=user.get('id'))
+                    else:
+                        create_like_comment(comment_id=comment_id, user_id=user.get('id'))
 
             garbage = get_garbage_by_id(garbage_id)
             comments = get_comment_by_garbage_id(garbage_id)
