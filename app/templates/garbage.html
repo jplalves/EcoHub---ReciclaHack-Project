@@ -181,15 +181,6 @@
       return "";
     }
 
-    document.getElementById('new-tip-form').action += getCookie('access-token');
-    document.getElementById('upvote-button-form').action += getCookie('access-token');
-
-    document.getElementById('logout-btn').onclick = function () {
-      document.cookie = "access-token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-      document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-      document.location.reload();
-    }
-
     if (getCookie('access-token')) {
       document.getElementById('user-welcome-text').innerText += getCookie('username') + " :)";
       document.getElementById('login-item').style.display = "none";
@@ -201,6 +192,15 @@
 
     const userCookie = getCookie('username');
     document.getElementById('user-name').placeholder = userCookie;
+
+    document.getElementById('new-tip-form').action += getCookie('access-token');
+    document.getElementById('upvote-button-form').action += getCookie('access-token');
+
+    document.getElementById('logout-btn').onclick = function () {
+      document.cookie = "access-token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+      document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+      document.location.reload();
+    }
 
     if (!userCookie) {
       document.getElementById('new-tip-btn').style.display = "none";
