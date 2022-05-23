@@ -180,7 +180,6 @@
       }
       return "";
     }
-
     if (getCookie('access-token')) {
       document.getElementById('user-welcome-text').innerText += getCookie('username') + " :)";
       document.getElementById('login-item').style.display = "none";
@@ -190,9 +189,6 @@
       document.getElementById('logout-item').style.display = "none";
     }
 
-    const userCookie = getCookie('username');
-    document.getElementById('user-name').placeholder = userCookie;
-
     document.getElementById('new-tip-form').action += getCookie('access-token');
     document.getElementById('upvote-button-form').action += getCookie('access-token');
 
@@ -201,6 +197,9 @@
       document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
       document.location.reload();
     }
+
+    const userCookie = getCookie('username');
+    document.getElementById('user-name').placeholder = userCookie;
 
     if (!userCookie) {
       document.getElementById('new-tip-btn').style.display = "none";
