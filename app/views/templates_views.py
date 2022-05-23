@@ -4,6 +4,7 @@ from app.actions.users_actions import create_user, login_user
 from flask import Blueprint, render_template, request, redirect, url_for
 from app.actions.comments_actions import get_comment_by_garbage_id, create_comment
 from app.actions.garbage_actions import get_garbage_by_id, get_garbage_by_type, create_garbage, get_garbage_by_name
+from app.actions.comment_likes_actions import create_like_comment
 
 app_views = Blueprint('views', __name__)
 
@@ -77,15 +78,16 @@ def garbage_view(garbage_id):
     garbage = get_garbage_by_id(garbage_id)
     comments = get_comment_by_garbage_id(garbage_id)
     list_comment = []
-    top_comment = comments[0]
+    top_comment = comments[0] if comments else None
 
     for comment in comments:
         if top_comment.likes < top_comment.likes:
             top_comment = comment
         list_comment.append(comment.serialize())
 
+    best_comment = top_comment.serialize() if top_comment else None
     return render_template('garbage.html', garbage=garbage.serialize(),
-                           comments=list_comment, top_comment=top_comment.serialize())
+                           comments=list_comment, top_comment=best_comment)
 
 
 @app_views.route('/ranking', methods=['GET'])
@@ -121,8 +123,44 @@ def register_comment_view(garbage_id, token):
                     create_comment(data, garbage_id=garbage_id, user_id=user.get('id'))
 
             garbage = get_garbage_by_id(garbage_id)
-            comments = [comment.serialize() for comment in get_comment_by_garbage_id(garbage_id)]
-            return render_template('garbage.html', garbage=garbage.serialize(), comments=comments)
+            comments = get_comment_by_garbage_id(garbage_id)
+            top_comment = comments[0] if comments else None
+            list_comment = []
+            for comment in comments:
+                if top_comment.likes < top_comment.likes:
+                    top_comment = comment
+                list_comment.append(comment.serialize())
+
+            best_comment = top_comment.serialize() if top_comment else None
+            return render_template('garbage.html', garbage=garbage.serialize(),
+                                   comments=list_comment, top_comment=best_comment)
         except:
             return render_template('login.html', status=False)
 
+
+@app_views.route('/register/like_comment/<garbage_id>/<comment_id>/<token>', methods=['POST'])
+def register_like_comment_view(garbage_id, comment_id, token):
+    if request.method == "POST":
+        data = request.values
+        try:
+            user = jwt.decode(token, "secret", algorithms=["HS256"])
+
+            if user:
+                if user.get('cnpj'):
+                    create_like_comment(comment_id=comment_id, cooperative_id=user.get('id'))
+                else:
+                    create_like_comment(comment_id=comment_id, user_id=user.get('id'))
+
+            garbage = get_garbage_by_id(garbage_id)
+            comments = get_comment_by_garbage_id(garbage_id)
+            top_comment = comments[0] if comments else None
+            list_comment = []
+            for comment in comments:
+                if top_comment.likes < top_comment.likes:
+                    top_comment = comment
+                list_comment.append(comment.serialize())
+
+            return render_template('garbage.html', garbage=garbage.serialize(),
+                                   comments=list_comment, top_comment=top_comment.serialize())
+        except:
+            return render_template('login.html', status=False)
