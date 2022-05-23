@@ -69,8 +69,18 @@ def tips_search_view():
 @app_views.route('/tips/search/garbage/<garbage_id>', methods=['POST', 'GET'])
 def type_search_garbage_view(garbage_id):
     garbage = get_garbage_by_id(garbage_id)
-    comments = [comment.serialize() for comment in get_comment_by_garbage_id(garbage_id)]
-    return render_template('garbage.html', garbage=garbage.serialize(), comments=comments)
+    comments = get_comment_by_garbage_id(garbage_id)
+    list_comment = []
+    top_comment = comments[0] if comments else None
+
+    for comment in comments:
+        if top_comment.likes < top_comment.likes:
+            top_comment = comment
+        list_comment.append(comment.serialize())
+
+    best_comment = top_comment.serialize() if top_comment else None
+    return render_template('garbage.html', garbage=garbage.serialize(),
+                           comments=list_comment, top_comment=best_comment)
 
 
 @app_views.route('/garbage/<garbage_id>', methods=['POST', 'GET'])
