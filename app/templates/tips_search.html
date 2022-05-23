@@ -69,11 +69,15 @@
           <div class="card" style="border: 3px solid black;">
             <a href="garbage/{{garbage.id}}" style="text-decoration: none; color: black; font-family: 'Cairo', sans-serif;">
               <!-- TODO: substitute current src with entity's URI attribute -->
-              <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/042.webp" class="card-img-top py-2"
+              <img src="{{ url_for('static', filename=garbage.ds_url) }}" class="card-img-top py-2"
                 alt="Garbage image"/>
               <div class="card-body">
                 <h5 class="card-title">{{garbage.name}}</h5>
-                <p class="card-text">{{garbage.description}}</p>
+                {% if garbage.description|length > 120 %}
+                  <p class="card-text">{{garbage.description[0:120]}} ...</p>
+                {% else %}
+                  <p class="card-text">{{garbage.description}} ...</p>
+                {% endif %}
                 <div class="py-3">
                   <a href="garbage/{{garbage.id}}" class="btn btn-success">Ver dicas</a>
                 </div>
